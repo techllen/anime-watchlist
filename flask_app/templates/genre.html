@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}
+genre.title
+{% endblock %}
+
+{% block content %}
+<h1 class="text-center">genre.title</h1>
+<table>
+    {% for anime in genre %}
+    <tr>
+        <td>anime.title</td>
+        <td><img src="anime.coverImg" alt="Cover art"></td>
+        <td>
+            <a href="#">View</a>
+            <a href="#">Edit</a>
+            <a href="#">Abandon</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

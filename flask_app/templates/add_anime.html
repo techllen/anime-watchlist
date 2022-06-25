@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}
+New Anime
+{% endblock %}
+
+{% block content %}
+
+{% with messages = get_flashed_messages(category_filter=["anime-error"]) %}
+{% if messages %}
+    {% for message in messages %}
+        <p class="text-center">{{message}}</p>
+    {% endfor %}
+{% endif %}
+{% endwith %}
+<form action="" class="col-6 mx-auto" method="POST">
+<input type="hidden" name="user_id" value="{{session['user_id']}}">
+<div class="form-group text-center">
+    <label for="title">Title:</label><br><br>
+    <input class="form-control" type="text" name="title"><br>
+    <label for="coverImg">Cover Art URL:</label><br><br>
+    <input class="form-control" type="text" name="coverImg"><br>
+    <label for="date_aired">Date Aired:</label><br><br>
+    <input class="form-control" type="date" name="date_aired"><br>
+    <label for="date_started">Date Started:</label><br><br>
+    <input class="form-control" type="date" name="date_started"><br>
+    <label for="current_season">Current Season:</label><br><br>
+    <input class="form-control" type="number" name="current_season"><br>
+    <label for="current_episode">Current Episode:</label><br><br>
+    <input class="form-control" type="number" name="current_episode"><br>
+    <label for="genre">Genre:</label><br><br>
+    <select class="form-control">
+        {% for genre in genres %}
+        <option value="{{ genre.title }}">{{ genre.title }}</option>
+        {% endfor %}
+    </select><br>
+    <label for="description">Description:</label><br><br>
+    <textarea class="form-control" name="description" cols="24" rows="5"></textarea><br>
+    <input type="checkbox"><label for="statusDone"><span class="invisible">GO</span>Completed?</label><br><br>
+</div>
+<button class="btn btn-warning form-control my-2">Add New Anime</button>
+</form>
+{% endblock %}

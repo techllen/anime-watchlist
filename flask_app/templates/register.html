@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}
+Register
+{% endblock %}
+
+{% block content %}
+<form action="register" class="col-6 mx-auto form-group text-center" method="POST">
+    <section>
+        <label for="username">Username:</label><br><br>
+        <input class="form-control" type="text" name="username">
+    </section><br>
+    <section>
+        <label for="email">Email:</label><br><br>
+        <input class="form-control" type="email" name="email">
+    </section><br>
+    <section>
+        <label for="password">Password:</label><br><br>
+        <input class="form-control" type="password" name="password">
+    </section><br>
+    <section>
+        <label for="confirm_password">Confirm Password:</label><br><br>
+        <input class="form-control" type="password" name="confirm_password">
+    </section><br><br>
+    <button class="btn btn-warning form-control my-2">Register</button>
+</form>
+{% endblock %}
