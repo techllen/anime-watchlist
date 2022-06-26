@@ -4,10 +4,33 @@ Dashboard
 {% endblock %}
 
 {% block content %}
+<p>{{ user.username }}</p>
 <div>
-
+<h1>Currently Watching</h1>
+{% for anime in animes %}
+    {% if anime.statusDone == "inProgress" %}
+    {% if session['user_id'] == anime.user_id %}
+    <a href="/anime/{{ anime.id }}"><img style="width:250px" src="{{ anime.coverImg }}" alt="Cover Image"></a>
+    <h5>{{anime.title}}</h5>
+    <p>{{anime.startedAt}}</p>
+    <p>{{anime.seasons}}</p>
+    <p>{{anime.episodeNum}}</p>
+    <p><a href="#">{{anime.genre}}</a></p>
+    {% endif %}
+    {% endif %}
+    {% endfor %}
 </div>
-<div class="float-right">
-
+<div>
+<h1>Genres</h1>
+{% for genre in genres %}
+    <a href="#"><p>{{genre}}</p></a>
+    {% for anime in animes %}
+        {% if session['user_id'] == anime.user_id %}
+            {% if anime.genre == genre %}
+                <a href="/anime/{{ anime.id }}"><img style="height:50px" src="{{ anime.coverImg }}" alt="Cover Image"></a>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+{% endfor %}
 </div>
 {% endblock %}
