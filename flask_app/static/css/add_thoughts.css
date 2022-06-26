@@ -22,6 +22,11 @@ input {
     margin-bottom: 25px;
 }
 
+.txtA {
+    background-color: rgb(139 139 158);
+    border: solid 2px rgb(182 145 145);
+}
+
 .addB {
     border: solid 2px rgb(182 145 145);
     border-radius: 15px;
