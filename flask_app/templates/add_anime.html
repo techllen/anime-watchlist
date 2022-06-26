@@ -1,3 +1,8 @@
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/add_anime.css') }}">
+
+
+
 {% extends 'base.html' %}
 {% block title %}
 New Anime
@@ -12,23 +17,23 @@ New Anime
     {% endfor %}
 {% endif %}
 {% endwith %}
-<form action="" class="col-6 mx-auto" method="POST">
+<form action="" class="F" method="POST">  <!--col-6 mx-auto-->
 <input type="hidden" name="user_id" value="{{session['user_id']}}">
 <div class="form-group text-center">
     <label for="title">Title:</label><br><br>
-    <input class="form-control" type="text" name="title"><br>
+    <input class="" type="text" name="title"><br>
     <label for="coverImg">Cover Art URL:</label><br><br>
-    <input class="form-control" type="text" name="coverImg"><br>
+    <input class="" type="text" name="coverImg"><br>
     <label for="date_aired">Date Aired:</label><br><br>
-    <input class="form-control" type="date" name="date_aired"><br>
+    <input class="" type="date" name="date_aired"><br>
     <label for="date_started">Date Started:</label><br><br>
-    <input class="form-control" type="date" name="date_started"><br>
+    <input class="" type="date" name="date_started"><br>
     <label for="current_season">Current Season:</label><br><br>
-    <input class="form-control" type="number" name="current_season"><br>
+    <input class="" type="number" name="current_season"><br>
     <label for="current_episode">Current Episode:</label><br><br>
-    <input class="form-control" type="number" name="current_episode"><br>
+    <input class="" type="number" name="current_episode"><br>
     <label for="genre">Genre:</label><br><br>
-    <select class="form-control">
+    <select class="">
         {% for genre in genres %}
         <option value="{{ genre.title }}">{{ genre.title }}</option>
         {% endfor %}
@@ -37,6 +42,6 @@ New Anime
     <textarea class="form-control" name="description" cols="24" rows="5"></textarea><br>
     <input type="checkbox"><label for="statusDone"><span class="invisible">GO</span>Completed?</label><br><br>
 </div>
-<button class="btn btn-warning form-control my-2">Add New Anime</button>
+<button class="addB">Add New Anime</button>
 </form>
 {% endblock %}
