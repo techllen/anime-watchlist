@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/edit_thoughts.css') }}">
 {% extends 'base.html' %}
 {% block title %}
 Edit thoughts
@@ -5,11 +6,11 @@ Edit thoughts
 
 {% block content %}
 <br>
-<form action="" class="mx-auto" method="POST">
+<form action="" class="F" method="POST">
     <div class="form-group text-center">
         <label for="thought">Thoughts:</label><br><br>
-        <textarea class="form-control" name="thought" cols="24" rows="5"></textarea>
+        <textarea class="txtA" name="thought" cols="65" rows="15"></textarea>
     </div>
-    <button class="btn btn-warning form-control my-3">Edit Thought</button>
+    <button class="editB">Edit Thought</button>
     </form>
 {% endblock %}

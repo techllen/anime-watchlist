@@ -1,34 +1,35 @@
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/edit_anime.css') }}">
 {% extends 'base.html' %}
 {% block title %}
 Edit anime.title
 {% endblock %}
 
 {% block content %}
-<form action="/anime/anime.id/update" class="col-6 mx-auto" method="POST">
+<form action="/anime/anime.id/update" class="F" method="POST">
     <input type="hidden" name="user_id" value="{{session['user_id']}}">
     <div class="form-group text-center">
-        <label for="title">Title:</label>
-        <input class="form-control" type="text" name="title">
-        <label for="coverImg">Cover Art URL:</label>
-        <input class="form-control" type="text" name="coverImg">
-        <label for="date_aired">Date Aired:</label>
-        <input class="form-control" type="date" name="date_aired">
+        <label for="title">Title:</label><br><br>
+        <input class"" type="text" name="title"><br>
+        <label for="coverImg">Cover Art URL:</label><br><br>
+        <input class"" type="text" name="coverImg"><br>
+        <label for="date_aired">Date Aired:</label><br><br>
+        <input class"" type="date" name="date_aired"><br>
         <!-- radio buttons for status -->
-        <label for="date_started">Date Started:</label>
-        <input class="form-control" type="date" name="date_started">
-        <label for="current_season">Current Season:</label>
-        <input class="form-control" type="number" name="current_season">
-        <label for="current_episode">Current Episode:</label>
-        <input class="form-control" type="number" name="current_episode">
-        <label for="genre">Genre:</label>
-        <select class="form-control">
+        <label for="date_started">Date Started:</label><br><br>
+        <input class"" type="date" name="date_started"><br>
+        <label for="current_season">Current Season:</label><br><br>
+        <input class"" type="number" name="current_season"><br>
+        <label for="current_episode">Current Episode:</label><br><br>
+        <input class"" type="number" name="current_episode"><br>
+        <label for="genre">Genre:</label><br><br>
+        <select class"">
             {% for genre in genres %}
             <option value="{{ genre.title }}">{{ genre.title }}</option>
             {% endfor %}
-        </select>
-        <label for="description">Description:</label>
-        <textarea class="form-control" name="description" cols="24" rows="5"></textarea>
+        </select><br>
+        <label for="description">Description:</label><br><br>
+        <textarea class"" name="description" cols="24" rows="5"></textarea><br>
     </div>
-    <button class="btn btn-primary my-2">Add New Anime</button>
+    <button class="editB">Edit Anime</button>
     </form>
 {% endblock %}
