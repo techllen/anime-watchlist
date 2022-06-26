@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/add_thoughts.css') }}">
 {% extends 'base.html' %}
 {% block title %}
 Add Thoughts
@@ -5,7 +6,7 @@ Add Thoughts
 
 {% block content %}
 <br>
-<form action="" class="mx-auto" method="POST">
+<form action="" class="F" method="POST">
     <div class="form-group text-center">
         <label for="season">Season:</label><br><br>
         <input class="form-control" type="number" name="current_season"><br>
@@ -14,6 +15,6 @@ Add Thoughts
         <label for="thought">Thoughts:</label><br><br>
         <textarea class="form-control" name="thought" cols="24" rows="5"></textarea>
     </div><br><br>
-    <button class="btn btn-warning btn-sm  form-control">Add New Thought</button>
+    <button class="addB">Add New Thought</button>
     </form>
 {% endblock %}
