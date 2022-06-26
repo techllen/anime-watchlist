@@ -15,7 +15,7 @@ def new_anime():
         return render_template("add_anime.html")
 
     
-# this route handles validation and saving the animes to the database
+# this route handles validation and saving the anime to the database
 @app.route("/add_anime", methods = ["POST"])
 def add_anime():
     # validating user inputs
