@@ -12,7 +12,7 @@ class User:
         self.name = data['username']
         self.email = data['email']
         self.password = data['password']
-        self.created_at = data['created_at']
+        self.created_at = data['createdAt']
 
     @classmethod
     def createOne(cls, data):
@@ -50,7 +50,7 @@ class User:
         if len(user['password']) < 8:
             flash("Password must be at least 8 characters.")
             isValid = False
-        if user['password'] != user['confirmPass']:
+        if user['password'] != user['confirm_password']:
             flash("passwords must match")
             isValid = False
         if not EMAIL_REGEX.match(user['email']):
