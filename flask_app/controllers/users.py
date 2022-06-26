@@ -11,10 +11,20 @@ def home():
     return render_template("login.html")
 
 
+# this route redirect users to the dashboard page
+@app.route("/dashboard")
+def dashboard_page():
+    # check if user is logged in
+    if session.get("user_id")==None: 
+        return redirect("/")
+    else:
+        return render_template("dashboard.html")
+
+
 # this route handles user registration
 @app.route("/register", methods = ["POST"])
 def register():
-    # first thing first validate user inputs
+    #validating user inputs
     user_inputs = request.form
     if not user.User.validateRegister(user_inputs):
         # if any user input is invalid send the user to home page
@@ -35,7 +45,7 @@ def register():
         # assigning session to the user
         session["user_id"] = user_id
         # redirecting the user to the dashboard
-        return render_template("dashboard.html")
+        return redirect("/dashboard")
 
 # this route handles user login
 @app.route("/login", methods = ["POST"])
@@ -60,7 +70,7 @@ def login():
             #assigning session to the user
             session["user_id"] = user_in_db.id
             # redirecting the user to the dashboard
-            return render_template("dashboard.html")
+            return redirect("/dashboard")
 
 
 # this route handles logout
