@@ -2,7 +2,7 @@ from flask_app.config.mysqlconnection import connectToMySQL
 from flask import flash
 
 class Thought:
-    db_name = "group-project"
+    db = "group-project"
     
     def __init__(self, data):
         self.id = data['id']
@@ -14,7 +14,7 @@ class Thought:
     @classmethod
     def getAllThoughts(cls, data):
         query = "SELECT * FROM thoughts where anime_id = %(anime_id)s"
-        results = connectToMySQL(cls.db_name).query_db(query, data)
+        results = connectToMySQL(cls.db).query_db(query, data)
         return results
 
     @classmethod
@@ -22,21 +22,21 @@ class Thought:
         print (data)
         query = "UPDATE thoughts SET thoughts = %(thoughts)s, episodeNum = %(episodeNum)s, seasonNum = %(seasonNum)s WHERE id = %(id)s;"
         print(query)
-        results = connectToMySQL(cls.db_name).query_db(query, data)
+        results = connectToMySQL(cls.db).query_db(query, data)
         print(results)
         return results
 
     @classmethod 
     def save(cls, data):
         query = "insert into thoughts (user_id, anime_id) value ( %(user_id)s, %(anime_id)s);"
-        results = connectToMySQL(cls.db_name).query_db(query,data)
+        results = connectToMySQL(cls.db).query_db(query,data)
         return results
 
 
     @classmethod
     def deleteThought(cls, data):
         query  = "DELETE FROM thoughts WHERE id = %(id)s;"
-        return connectToMySQL(cls.db_name).query_db(query,data)
+        return connectToMySQL(cls.db).query_db(query,data)
 
     @staticmethod
     def thoughtValidation(thought):

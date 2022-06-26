@@ -17,15 +17,13 @@ New Anime
     {% endfor %}
 {% endif %}
 {% endwith %}
-<form action="" class="F" method="POST">  <!--col-6 mx-auto-->
+<form action="/add_anime" class="F" method="POST">  <!--col-6 mx-auto-->
 <input type="hidden" name="user_id" value="{{session['user_id']}}">
 <div class="form-group text-center">
     <label for="title">Title:</label><br><br>
     <input class="" type="text" name="title"><br>
     <label for="coverImg">Cover Art URL:</label><br><br>
     <input class="" type="text" name="coverImg"><br>
-    <label for="date_aired">Date Aired:</label><br><br>
-    <input class="" type="date" name="date_aired"><br>
     <label for="date_started">Date Started:</label><br><br>
     <input class="" type="date" name="date_started"><br>
     <label for="current_season">Current Season:</label><br><br>
@@ -37,10 +35,8 @@ New Anime
         {% for genre in genres %}
         <option value="{{ genre.title }}">{{ genre.title }}</option>
         {% endfor %}
-    </select><br>
-    <label for="description">Description:</label><br><br>
-    <textarea class="form-control" name="description" cols="24" rows="5"></textarea><br>
-    <input type="checkbox"><label for="statusDone"><span class="invisible">GO</span>Completed?</label><br><br>
+    </select><br><br>
+    <input type="checkbox" value="completed"><label for="statusDone">Completed?</label><br><br>
 </div>
 <button class="addB">Add New Anime</button>
 </form>

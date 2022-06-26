@@ -4,15 +4,30 @@ Library
 {% endblock %}
 
 {% block content %}
+<p>{{ user.username }}</p>
 <div>
-    <div>
-
-    </div>
-    <div>
-
-    </div>
+<h1>Currently Watching</h1>
+{% for anime in animes %}
+    {% if session['user_id'] == anime.user_id %}
+    <a href="/anime/{{ anime.id }}"><img style="width:250px" src="{{ anime.coverImg }}" alt="Cover Image"></a>
+    <h5>{{anime.title}}</h5>
+    <p>{{anime.startedAt}}</p>
+    <p>{{anime.seasons}}</p>
+    <p>{{anime.episodeNum}}</p>
+    <p><a href="#">{{anime.genre}}</a></p>
+    {% endif %}
+    {% endfor %}
 </div>
-<div class="float-right">
-
+<div>
+<h1>Abandoned</h1>
+{% for anime in animes %}
+    {% if anime.statusDone == "abandoned" %}
+    {% if session['user_id'] == anime.user_id %}
+    <a href="/anime/{{ anime.id }}"><img style="width:250px" src="{{ anime.coverImg }}" alt="Cover Image"></a>
+    <h5>{{anime.title}}</h5>
+    {% endif %}
+    {% endif %}
+    {% endfor %}
 </div>
+{% endblock %}
 {% endblock %}
