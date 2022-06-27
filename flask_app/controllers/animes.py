@@ -3,6 +3,7 @@ from flask import render_template,redirect,session,request
 from flask_app.models.user import User
 from flask_app.models.anime import Anime
 from flask_app.models.thought import Thought
+
 # global genres array
 genres_array = ["Action","Adventure","Comedy","Drama","Fantasy","Isekai","Music","Romance","Scifi","Seinen","Shojo","Shonen","Slice Of Life","Sports","Supernatural","Thriller"]
 
@@ -57,7 +58,8 @@ def view_anime(id):
         }
         # retrieving the anime we want to view from db
         anime_from_db = Anime.getAnime(anime_data)
-        return render_template("anime.html",anime = anime_from_db)
+        thoughts_from_db = Thought.getAllThoughts(anime_data)
+        return render_template("anime.html",anime = anime_from_db,thoughts = thoughts_from_db)
     
 # this route redirect users to the edit anime page(edit_anime.html)
 @app.route("/edit_anime/<int:id>")

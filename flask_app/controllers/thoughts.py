@@ -15,61 +15,46 @@ def new_thought():
         return render_template("add_thoughts.html")
 
     
-# this route handles validation and saving the thought to the database, placed in the add_thought.html action attr
-@app.route("/add_new_thought", methods = ["POST"])
-def add_thought():
-    # validating user inputs
-    user_inputs = request.form
-    # print(user_inputs)
-    
-    if not Thought.thoughtValidation(user_inputs):
-        # if any user input is invalid send the user to the add new thought page
-        return redirect("/thought/new")
-    else:
-        # save the thought data
-        Thought.save(user_inputs)
-        return redirect("/dashboard")
-    
-# this route redirect users to the view thought page(thought.html)
-@app.route("/view_thought/<int:id>")
-def view_thought(id):
+# this route handles validation and saving the thought to the database, placed in the add_thought.html action attr...it receives anime_id as variable from front end
+@app.route("/add_new_thought/<int:id>", methods = ["POST"])
+def add_thought(id):
     # check if user is logged in
     if session.get("user_id")==None: 
         return redirect("/")
     else:
-        thought_data = {
-            "id" : id
-        }
-        # retrieving the thought we want to view from db
-        thought_from_db = Thought.getthought(thought_data)
-        return render_template("thought.html",thought = thought_from_db)
-    
-# this route retrieves all the thoughts from the database
-@app.route("/get_all_thoughts")
-def get_all_thoughts():
-    # check if user is logged in
-    if session.get("user_id")==None: 
-        return redirect("/")
-    else:
-        # retrieving all the thought we want to view from db
-        # thoughts_from_db = thought.thought.getAllthoughts()
-        # return render_template(,thoughts = thoughts_from_db)
-        pass
-    
+        # validate user inputs
+        user_inputs = request.form
+        # print(user_inputs)
+        
+        if not Thought.thoughtValidation(user_inputs):
+            # if any user input is invalid send the user to the add new thought page
+            return redirect("/thought/new")
+        else:
+            # dict to carry thought data
+            thought_data = {
+                "anime_id" : id,
+                "thoughts" : request.form["thoughts"],
+                "episodeNum" : request.form["episodeNum"],
+                "seasonNum" : request.form["seasonNum"]
+            }
+            # save the thought data
+            Thought.save(thought_data)
+            return redirect("/dashboard")
+        
+
 # this route redirect users to the edit thought page(edit_thought.html)
 @app.route("/edit_thought/<int:id>")
-def edit_thought_page(id):
+def edit_thought(id):
     # check if user is logged in
     if session.get("user_id")==None: 
         return redirect("/")
-    else:    
+    else:
         thought_data = {
             "id" : id
         }
-        # retrieving the thought we want to edit from db
-        thought_from_db = Thought.getthought(thought_data)
-        # populate the data in the edit page
-        return render_template("edit_thought.html",thought = thought_from_db)
+        # retrieving a thought we want to edit from db
+        thought_from_db = Thought.get_thought_by_id(thought_data)
+        return render_template("edit_thoughts.html" ,thought = thought_from_db)
     
 # this route updates edited thought data in the database
 @app.route("/thought/<int:id>/update", methods = ["POST"])
@@ -79,14 +64,10 @@ def update_thought(id):
         return redirect("/")
     else:        
         thought_data = {
-        "title" :  request.form["title"],
-        "episodeNum" :  request.form["episodeNum"],
-        "seasons" :  request.form["seasons"],
-        "statusDone" :  request.form["statusDone"],
-        "startedAt" :  request.form["startedAt"], 
-        "genre" :  request.form["genre"],
-        "coverImg" :  request.form["coverImg"],
-        "id" : id
+            "id" : id,
+            "thoughts" : request.form["thoughts"],
+            "episodeNum" : request.form["episodeNum"],
+            "seasonNum" : request.form["seasonNum"]
         }
         # updating the database
         Thought.update(thought_data)
