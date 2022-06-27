@@ -2,7 +2,7 @@ from flask_app.config.mysqlconnection import connectToMySQL
 from flask import flash
 
 class Anime:
-    db_name = "group-project"
+    db = "group-project"
     
     def __init__(self, data):
         self.user_id = data['user_id']
@@ -18,7 +18,7 @@ class Anime:
     @classmethod
     def getAllAnimes(cls):
         query = "SELECT * FROM animes"
-        results = connectToMySQL(cls.db_name).query_db(query)
+        results = connectToMySQL(cls.db).query_db(query)
         animes = []
         print(results)
         for anime in results:
@@ -28,23 +28,32 @@ class Anime:
     @classmethod
     def save(cls, data):
         query = "insert into animes (user_id, title, episodeNum, seasons, statusDone, startedAt, genre, coverImg) value (%(user_id)s, %(title)s, %(episodeNum)s, %(seasons)s, %(statusDone)s, %(startedAt)s, %(genre)s, %(coverImg)s);"
-        results = connectToMySQL(cls.db_name).query_db(query,data)
+        results = connectToMySQL(cls.db).query_db(query,data)
         return results
 
     @classmethod
     def getAnime(cls, data):
         query = "SELECT * FROM animes Where animes.id = %(id)s;"
-        results = connectToMySQL(cls.db_name).query_db(query,data)
+        results = connectToMySQL(cls.db).query_db(query,data)
         print("----------------", results)
         anime = cls(results[0])
         return anime
+
+    @classmethod
+    def getByGenre(cls, data):
+        query = "SELECT * FROM animes where genre=%(genre)s;"
+        results = connectToMySQL(cls.db).query_db(query)
+        animesInGenre = []
+        for anime in results:
+            animesInGenre.append(cls(anime))
+        return animesInGenre
 
     @classmethod
     def update(cls, data):
         print (data)
         query = "UPDATE animes SET title = %(title)s, episodeNum = %(episodeNum)s, seasons = %(seasons)s, statusDone = %(statusDone)s, startedAt = %(startedAt)s, genre = %(genre)s, coverImg = %(coverImg)s WHERE id = %(id)s;"
         print(query)
-        results = connectToMySQL(cls.db_name).query_db(query, data)
+        results = connectToMySQL(cls.db).query_db(query, data)
         print(results)
         return results
 
@@ -52,7 +61,7 @@ class Anime:
     def delete(cls, data):
         query  = "DELETE FROM animes WHERE id = %(id)s;"
         print(query)
-        return connectToMySQL(cls.db_name).query_db(query,data)
+        return connectToMySQL(cls.db).query_db(query,data)
 
     @staticmethod
     def animeValidation(input):
