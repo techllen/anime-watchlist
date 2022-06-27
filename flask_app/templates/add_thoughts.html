@@ -6,14 +6,15 @@ Add Thoughts
 
 {% block content %}
 <br>
-<form action="" class="F" method="POST">
+<form action="/thought/{{anime.id}}/add" class="F" method="POST">
     <div class="form-group text-center">
+        <input type="hidden" value="{{anime.id}}" name="anime_id">
         <label for="season">Season:</label><br><br>
-        <input class="form-control" type="number" name="current_season"><br>
+        <input class="form-control" type="number" name="seasonNum"><br>
         <label for="episode">Episode:</label><br><br>
-        <input class="form-control" type="number" name="episode"><br>
-        <label for="thought">Thoughts:</label><br><br>
-        <textarea class="txtA" name="thought" cols="65" rows="15"></textarea>
+        <input class="form-control" type="number" name="episodeNum"><br>
+        <label for="thoughts">Thoughts:</label><br><br>
+        <textarea class="txtA" name="thoughts" cols="65" rows="15"></textarea>
     </div><br><br>
     <button class="addB">Add New Thought</button>
     </form>

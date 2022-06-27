@@ -18,9 +18,18 @@ class Thought:
         return results
 
     @classmethod
+    def getById(cls, data):
+        query = "SELECT * FROM thoughts Where id=%(id)s;"
+        results = connectToMySQL(cls.db).query_db(query,data)
+        print("----------------", results)
+        if len(results) < 1:
+            return False
+        return cls(results[0])
+
+    @classmethod
     def update(cls, data):
         print (data)
-        query = "UPDATE thoughts SET thoughts = %(thoughts)s, episodeNum = %(episodeNum)s, seasonNum = %(seasonNum)s WHERE id = %(id)s;"
+        query = "UPDATE thoughts SET thoughts = %(thoughts)s WHERE id = %(id)s;"
         print(query)
         results = connectToMySQL(cls.db).query_db(query, data)
         print(results)
@@ -28,13 +37,13 @@ class Thought:
 
     @classmethod 
     def save(cls, data):
-        query = "insert into thoughts (user_id, anime_id) value ( %(user_id)s, %(anime_id)s);"
+        query = "insert into thoughts (anime_id, episodeNum, seasonNum, thoughts) value ( %(anime_id)s, %(episodeNum)s, %(seasonNum)s, %(thoughts)s);"
         results = connectToMySQL(cls.db).query_db(query,data)
         return results
 
 
     @classmethod
-    def deleteThought(cls, data):
+    def delete(cls, data):
         query  = "DELETE FROM thoughts WHERE id = %(id)s;"
         return connectToMySQL(cls.db).query_db(query,data)
 
@@ -44,10 +53,10 @@ class Thought:
         if len(thought['thoughts']) < 10:
             flash("please provide thoughts of at least 10 characters.")
             isValid = False
-        if thought['episodeNum'] < 1:
+        if int(thought['episodeNum']) < 1:
             flash("Please provide a episode number of at least 1.")
             isValid = False
-        if thought['episodeNum'] < 1:
+        if int(thought['episodeNum']) < 1:
             flash("Please choose a season number of at least 1.")
             isValid = False
         return isValid

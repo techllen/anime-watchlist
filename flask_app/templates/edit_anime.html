@@ -1,35 +1,35 @@
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/edit_anime.css') }}">
 {% extends 'base.html' %}
 {% block title %}
-Edit anime.title
+Edit {{anime.title}}
 {% endblock %}
 
 {% block content %}
-<form action="/anime/anime.id/update" class="F" method="POST">
-    <input type="hidden" name="user_id" value="{{session['user_id']}}">
+<form action="/anime/{{anime.id}}/update" class="F" method="POST">  <!--col-6 mx-auto-->
+    <input type="hidden" name="id" value="{{anime.id}}">
     <div class="form-group text-center">
         <label for="title">Title:</label><br><br>
-        <input class"" type="text" name="title"><br>
+        <input class="" type="text" name="title" value="{{anime.title}}"><br>
         <label for="coverImg">Cover Art URL:</label><br><br>
-        <input class"" type="text" name="coverImg"><br>
-        <label for="date_aired">Date Aired:</label><br><br>
-        <input class"" type="date" name="date_aired"><br>
-        <!-- radio buttons for status -->
-        <label for="date_started">Date Started:</label><br><br>
-        <input class"" type="date" name="date_started"><br>
-        <label for="current_season">Current Season:</label><br><br>
-        <input class"" type="number" name="current_season"><br>
-        <label for="current_episode">Current Episode:</label><br><br>
-        <input class"" type="number" name="current_episode"><br>
+        <input class="" type="text" name="coverImg" value="{{anime.coverImg}}"><br>
+        <label for="startedAt">Date Started:</label><br><br>
+        <input class="" type="date" name="startedAt" value="{{anime.startedAt}}"><br>
+        <label for="seasons">Current Season:</label><br><br>
+        <input class="" type="number" name="seasons" value="{{anime.seasons}}"><br>
+        <label for="episodeNum">Current Episode:</label><br><br>
+        <input class="" type="number" name="episodeNum" value="{{anime.episodeNum}}"><br>
         <label for="genre">Genre:</label><br><br>
-        <select class"">
+        <select name="genre" value="{{anime.genre}}">
             {% for genre in genres %}
-            <option value="{{ genre.title }}">{{ genre.title }}</option>
+            <option value="{{ genre }}">{{ genre }}</option>
             {% endfor %}
-        </select><br>
-        <label for="description">Description:</label><br><br>
-        <textarea class"" name="description" cols="24" rows="5"></textarea><br>
+        </select><br><br>
+        <select name="statusDone">
+            <option value="inProgress">Watching</option>
+            <option value="completed">Completed</option>
+            <option value="abandoned">Abandon</option>
+        </select>
     </div>
-    <button class="editB">Edit Anime</button>
+    <button class="addB">Edit Anime</button>
     </form>
 {% endblock %}

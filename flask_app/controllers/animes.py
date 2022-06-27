@@ -16,17 +16,37 @@ def new_anime():
     else:
         return render_template("add_anime.html",genres = genres_array)
 
-    
+@app.route("/anime/<int:id>/abandon")
+def abandon(id):
+    if session.get("user_id")==None: 
+        return redirect("/")
+    else:
+        anime_data = {
+            "id" : id
+        }
+        Anime.abandon(anime_data)
+        return redirect("/dashboard")
+@app.route("/anime/<int:id>/abandon")
+
+@app.route("/anime/<int:id>/complete")
+def complete(id):
+    if session.get("user_id")==None: 
+        return redirect("/")
+    else:
+        anime_data = {
+            "id" : id
+        }
+        Anime.complete(anime_data)
+        return redirect("/dashboard")
+
 # this route handles validation and saving the anime to the database ,placed in the add_anime.html action attr
 @app.route("/add_anime", methods = ["POST"])
 def add_anime():
-    user_inputs = request.form   
     # check if user is logged in
     if session.get("user_id")==None: 
         return redirect("/")
     else:
-        if not Anime.animeValidation(user_inputs):
-            # if any user input is invalid send the user to the add new anime page
+        if not Anime.animeValidation(request.form):
             return redirect("/anime/new")
         else:
             user_id = session.get("user_id")
@@ -47,7 +67,7 @@ def add_anime():
             return redirect("/dashboard")
     
 # this route redirect users to the view anime page(anime.html)
-@app.route("/view_anime/<int:id>")
+@app.route("/anime/<int:id>")
 def view_anime(id):
     # check if user is logged in
     if session.get("user_id")==None: 
@@ -56,13 +76,17 @@ def view_anime(id):
         anime_data = {
             "id" : id
         }
+        thought_data = {
+            "anime_id" : id
+        }
         # retrieving the anime we want to view from db
         anime_from_db = Anime.getAnime(anime_data)
-        thoughts_from_db = Thought.getAllThoughts(anime_data)
-        return render_template("anime.html",anime = anime_from_db,thoughts = thoughts_from_db)
+        thoughts_from_db = Thought.getAllThoughts(thought_data)
+        print(thoughts_from_db)
+        return render_template("anime.html", anime=anime_from_db, thoughts=thoughts_from_db)
     
 # this route redirect users to the edit anime page(edit_anime.html)
-@app.route("/edit_anime/<int:id>")
+@app.route("/anime/<int:id>/edit")
 def edit_anime_page(id):
     # check if user is logged in
     if session.get("user_id")==None: 
@@ -82,7 +106,9 @@ def update_anime(id):
     # check if user is logged in
     if session.get("user_id")==None: 
         return redirect("/")
-    else:        
+    else:
+        if not Anime.animeValidation(request.form):
+            return redirect(f'/anime/{id}/edit')
         anime_data = {
         "title" :  request.form["title"],
         "episodeNum" :  request.form["episodeNum"],
@@ -96,10 +122,10 @@ def update_anime(id):
         # updating the database
         Anime.update(anime_data)
         # back to the dashboard
-        return redirect("/dashboard")
+        return redirect(f"/anime/{id}")
 
 # this route deletes animes as requested by the user
-@app.route("/delete_anime/<int:id>")
+@app.route("/anime/<int:id>/delete")
 def delete_anime(id):
     # check if user is logged in
     if session.get("user_id")==None: 
@@ -112,3 +138,14 @@ def delete_anime(id):
         Anime.delete(anime_data)
         # back to the dashboard
         return redirect("/dashboard")
+
+@app.route("/<name>")
+def genreView(name):
+    if session.get("user_id")==None: 
+        return redirect("/")
+    else:    
+        genre_data = {
+            "genre": name
+        }
+        animes = Anime.getByGenre(genre_data)
+        return render_template("genre.html",animes=animes,genre=name)
