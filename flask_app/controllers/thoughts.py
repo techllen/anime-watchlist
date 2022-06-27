@@ -6,17 +6,21 @@ from flask_app.models.thought import Thought
 
 
 # this route redirect users to the add thought page(add_thought.html)
-@app.route("/thought/new")
-def new_thought():
+@app.route("/thought/<int:id>/new")
+def new_thought(id):
     # check if user is logged in
     if session.get("user_id")==None: 
         return redirect("/")
     else:
-        return render_template("add_thoughts.html")
+        anime_data = {
+            "id": id
+        }
+        anime = Anime.getAnime(anime_data)
+        return render_template("add_thoughts.html", anime=anime)
 
     
 # this route handles validation and saving the thought to the database, placed in the add_thought.html action attr...it receives anime_id as variable from front end
-@app.route("/add_new_thought/<int:id>", methods = ["POST"])
+@app.route("/thought/<int:id>/add", methods = ["POST"])
 def add_thought(id):
     # check if user is logged in
     if session.get("user_id")==None: 
@@ -28,7 +32,7 @@ def add_thought(id):
         
         if not Thought.thoughtValidation(user_inputs):
             # if any user input is invalid send the user to the add new thought page
-            return redirect("/thought/new")
+            return redirect("/dashboard")
         else:
             # dict to carry thought data
             thought_data = {
@@ -43,7 +47,7 @@ def add_thought(id):
         
 
 # this route redirect users to the edit thought page(edit_thought.html)
-@app.route("/edit_thought/<int:id>")
+@app.route("/thought/<int:id>/edit")
 def edit_thought(id):
     # check if user is logged in
     if session.get("user_id")==None: 
@@ -53,7 +57,7 @@ def edit_thought(id):
             "id" : id
         }
         # retrieving a thought we want to edit from db
-        thought_from_db = Thought.get_thought_by_id(thought_data)
+        thought_from_db = Thought.getById(thought_data)
         return render_template("edit_thoughts.html" ,thought = thought_from_db)
     
 # this route updates edited thought data in the database
@@ -65,9 +69,7 @@ def update_thought(id):
     else:        
         thought_data = {
             "id" : id,
-            "thoughts" : request.form["thoughts"],
-            "episodeNum" : request.form["episodeNum"],
-            "seasonNum" : request.form["seasonNum"]
+            "thoughts" : request.form["thoughts"]
         }
         # updating the database
         Thought.update(thought_data)
@@ -75,7 +77,7 @@ def update_thought(id):
         return redirect("/dashboard")
 
 # this route deletes thoughts as requested by the user
-@app.route("/delete_thought/<int:id>")
+@app.route("/thought/<int:id>/delete")
 def delete_thought(id):
     # check if user is logged in
     if session.get("user_id")==None: 

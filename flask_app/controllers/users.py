@@ -28,6 +28,19 @@ def dashboard_page():
     else: 
         return redirect("/")
 
+@app.route("/library")
+def library():
+    if 'user_id' in session:
+        user_data = {
+            'id': session['user_id']
+        }
+        user = User.getOne(user_data)
+        anime = Anime.getAllAnimes()
+        return render_template("library.html", user=user, animes=anime)
+    else: 
+        return redirect("/")
+
+
 
 # this route handles user registration
 @app.route("/register", methods = ["POST"])

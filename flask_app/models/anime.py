@@ -1,5 +1,5 @@
 from flask_app.config.mysqlconnection import connectToMySQL
-from flask import flash
+from flask import flash, redirect
 
 class Anime:
     db = "group-project"
@@ -28,21 +28,32 @@ class Anime:
     @classmethod
     def save(cls, data):
         query = "insert into animes (user_id, title, episodeNum, seasons, statusDone, startedAt, genre, coverImg) value (%(user_id)s, %(title)s, %(episodeNum)s, %(seasons)s, %(statusDone)s, %(startedAt)s, %(genre)s, %(coverImg)s);"
-        results = connectToMySQL(cls.db).query_db(query,data)
-        return results
+        return connectToMySQL(cls.db).query_db(query,data)
+        
 
     @classmethod
     def getAnime(cls, data):
-        query = "SELECT * FROM animes Where animes.id = %(id)s;"
+        query = "SELECT * FROM animes Where animes.id=%(id)s;"
         results = connectToMySQL(cls.db).query_db(query,data)
         print("----------------", results)
-        anime = cls(results[0])
-        return anime
+        if len(results) < 1:
+            return False
+        return cls(results[0])
+
+    @classmethod
+    def abandon(cls, data):
+        query = "UPDATE animes SET statusDone='abandoned' WHERE id=%(id)s;"
+        return connectToMySQL(cls.db).query_db(query, data)
+
+    @classmethod
+    def complete(cls, data):
+        query = "UPDATE animes SET statusDone='completed' WHERE id=%(id)s;"
+        return connectToMySQL(cls.db).query_db(query, data)
 
     @classmethod
     def getByGenre(cls, data):
         query = "SELECT * FROM animes where genre=%(genre)s;"
-        results = connectToMySQL(cls.db).query_db(query)
+        results = connectToMySQL(cls.db).query_db(query, data)
         animesInGenre = []
         for anime in results:
             animesInGenre.append(cls(anime))
@@ -51,7 +62,7 @@ class Anime:
     @classmethod
     def update(cls, data):
         print (data)
-        query = "UPDATE animes SET title = %(title)s, episodeNum = %(episodeNum)s, seasons = %(seasons)s, statusDone = %(statusDone)s, startedAt = %(startedAt)s, genre = %(genre)s, coverImg = %(coverImg)s WHERE id = %(id)s;"
+        query = "UPDATE animes SET title = %(title)s, episodeNum = %(episodeNum)s, seasons = %(seasons)s, statusDone = %(statusDone)s, startedAt = %(startedAt)s, genre = %(genre)s, coverImg = %(coverImg)s WHERE animes.id = %(id)s;"
         print(query)
         results = connectToMySQL(cls.db).query_db(query, data)
         print(results)
@@ -64,23 +75,33 @@ class Anime:
         return connectToMySQL(cls.db).query_db(query,data)
 
     @staticmethod
-    def animeValidation(input):
+    def animeValidation(anime):
         isValid = True
-        if len(input['title']) < 3:
-            flash("Please provide a title of at least 3 characters")
-            isValid= False
-        if input['episodeNum'] < 0:
-            flash("Please provide a episode number of at least 1")
-            isValid= False
-        if input['seasons'] < 0:
-            flash("Please provide a number of seasons of at least 1")
-            isValid= False
-        if len(input['startedAt']) < 1:
-            flash("Please provide a platform to watch on")
-            isValid= False
-        if len(input['genre']) < 1:
-            flash("Please seclect a genre")
-            isValid= False
+        try:
+            ep = int(anime['episodeNum'])
+            se = int(anime['seasons'])
+
+            if len(anime['title']) < 3:
+                flash("Please provide a title of at least 3 characters", 'anime-error')
+                isValid= False
+            if not anime['episodeNum']:
+                flash("Please provide an episode", 'anime-error')
+                isValid= False
+            if ep <= 0:
+                flash("Please provide a episode number of at least 1", 'anime-error')
+                isValid= False
+            if not anime['seasons']:
+                flash("Please provide a season", 'anime-error')
+                isValid= False
+            if se <= 0:
+                flash("Please provide a season number of at least 1", 'anime-error')
+                isValid= False
+            if not anime['startedAt']:
+                flash("Please provide a date started", 'anime-error')
+                isValid= False
+        except:
+            flash("Invalid inputs, 'anime-error")
+            return redirect("/dashboard")
         return isValid
 
 

@@ -6,11 +6,12 @@ Edit thoughts
 
 {% block content %}
 <br>
-<form action="" class="F" method="POST">
+<form action="/thought/{{thought.id}}/update" class="F" method="POST">
     <div class="form-group text-center">
-        <label for="thought">Thoughts:</label><br><br>
-        <textarea class="txtA" name="thought" cols="65" rows="15"></textarea>
+        <label for="thoughts">Thoughts:</label><br><br>
+        <textarea class="txtA" name="thoughts" cols="65" rows="15"></textarea>
     </div>
     <button class="editB">Edit Thought</button>
     </form>
+    <a href="/thought/{{thought.id}}/delete">Delete Thoughts</a>
 {% endblock %}
