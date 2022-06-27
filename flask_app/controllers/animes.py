@@ -1,8 +1,8 @@
 from flask_app import app
 from flask import render_template,redirect,session,request
-from flask_app.models import anime,thought,user
-from flask_app.controllers import users,thoughts
-
+from flask_app.models.user import User
+from flask_app.models.anime import Anime
+from flask_app.models.thought import Thought
 # global genres array
 genres_array = ["Action","Adventure","Comedy","Drama","Fantasy","Isekai","Music","Romance","Scifi","Seinen","Shojo","Shonen","Slice Of Life","Sports","Supernatural","Thriller"]
 
@@ -24,7 +24,7 @@ def add_anime():
     if session.get("user_id")==None: 
         return redirect("/")
     else:
-        if not anime.Anime.animeValidation(user_inputs):
+        if not Anime.animeValidation(user_inputs):
             # if any user input is invalid send the user to the add new anime page
             return redirect("/anime/new")
         else:
@@ -42,7 +42,7 @@ def add_anime():
             "coverImg" :  request.form["coverImg"],
             }
             # save the anime data
-            anime.Anime.save(anime_data)
+            Anime.save(anime_data)
             return redirect("/dashboard")
     
 # this route redirect users to the view anime page(anime.html)
@@ -56,35 +56,8 @@ def view_anime(id):
             "id" : id
         }
         # retrieving the anime we want to view from db
-        anime_from_db = anime.Anime.getAnime(anime_data)
+        anime_from_db = Anime.getAnime(anime_data)
         return render_template("anime.html",anime = anime_from_db)
-    
-# this route retrieves all the animes from the database
-@app.route("/get_all_animes")
-def get_all_animes():
-    # check if user is logged in
-    if session.get("user_id")==None: 
-        return redirect("/")
-    else:
-        # retrieving all the anime we want to view from db
-        animes_from_db = anime.Anime.getAllAnimes()
-        # return render_template(,animes = animes_from_db)
-        pass
-    
-# this route retrieves all the animes from the database added by a specific user
-# @app.route("/get_all_animes_by_user_id")
-# def get_all_animes_by_user_id():
-#     # check if user is logged in
-#     if session.get("user_id")==None: 
-#         return redirect("/")
-#     else:
-#         user_data = {
-#             "id" : session.get("user_id")
-#         }
-#         # retrieving all the anime we want to view from db by user id
-#         # animes_from_db_by_user_id= anime.Anime.get_all_animes_by_user_id(user_data)
-#         # return render_template(,animes = animes_from_db_by_user_id)
-#         pass
     
 # this route redirect users to the edit anime page(edit_anime.html)
 @app.route("/edit_anime/<int:id>")
@@ -97,7 +70,7 @@ def edit_anime_page(id):
             "id" : id
         }
         # retrieving the anime we want to edit from db
-        anime_from_db = anime.Anime.getAnime(anime_data)
+        anime_from_db = Anime.getAnime(anime_data)
         # populate the data in the edit page
         return render_template("edit_anime.html",genres = genres_array,anime = anime_from_db)
     
@@ -119,7 +92,7 @@ def update_anime(id):
         "id" : id
         }
         # updating the database
-        anime.Anime.update(anime_data)
+        Anime.update(anime_data)
         # back to the dashboard
         return redirect("/dashboard")
 
@@ -134,6 +107,6 @@ def delete_anime(id):
             "id" : id
         }
         # deleting a specific anime
-        anime.Anime.delete(anime_data)
+        Anime.delete(anime_data)
         # back to the dashboard
         return redirect("/dashboard")

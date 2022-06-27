@@ -1,7 +1,8 @@
 from flask_app import app
 from flask import render_template,redirect,session,request
-from flask_app.models import anime,thought,user
-from flask_app.controllers import users,animes
+from flask_app.models.user import User
+from flask_app.models.anime import Anime
+from flask_app.models.thought import Thought
 
 
 # this route redirect users to the add thought page(add_thought.html)
@@ -21,12 +22,12 @@ def add_thought():
     user_inputs = request.form
     # print(user_inputs)
     
-    if not thought.Thought.thoughtValidation(user_inputs):
+    if not Thought.thoughtValidation(user_inputs):
         # if any user input is invalid send the user to the add new thought page
         return redirect("/thought/new")
     else:
         # save the thought data
-        thought.Thought.save(user_inputs)
+        Thought.save(user_inputs)
         return redirect("/dashboard")
     
 # this route redirect users to the view thought page(thought.html)
@@ -40,7 +41,7 @@ def view_thought(id):
             "id" : id
         }
         # retrieving the thought we want to view from db
-        thought_from_db = thought.Thought.getthought(thought_data)
+        thought_from_db = Thought.getthought(thought_data)
         return render_template("thought.html",thought = thought_from_db)
     
 # this route retrieves all the thoughts from the database
@@ -66,7 +67,7 @@ def edit_thought_page(id):
             "id" : id
         }
         # retrieving the thought we want to edit from db
-        thought_from_db = thought.Thought.getthought(thought_data)
+        thought_from_db = Thought.getthought(thought_data)
         # populate the data in the edit page
         return render_template("edit_thought.html",thought = thought_from_db)
     
@@ -88,7 +89,7 @@ def update_thought(id):
         "id" : id
         }
         # updating the database
-        thought.Thought.update(thought_data)
+        Thought.update(thought_data)
         # back to the dashboard
         return redirect("/dashboard")
 
@@ -103,6 +104,6 @@ def delete_thought(id):
             "id" : id
         }
         # deleting a specific thought
-        thought.Thought.delete(thought_data)
+        Thought.delete(thought_data)
         # back to the dashboard
         return redirect("/dashboard")
