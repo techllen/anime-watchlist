@@ -1,19 +1,19 @@
 {% extends 'base.html' %}
 {% block title %}
-genre.title
+{{ genre }}
 {% endblock %}
 
 {% block content %}
-<h1 class="text-center">genre.title</h1>
+<h1>{{ genre }}</h1>
 <table>
-    {% for anime in genre %}
+    {% for anime in animes %}
     <tr>
-        <td>anime.title</td>
-        <td><img src="anime.coverImg" alt="Cover art"></td>
+        <td><h3>{{anime.title}}</h3><br>
+            <a href="/anime/{{ anime.id }}">
+            <img style="width: 250px;" src="{{anime.coverImg}}" alt="Cover art"></a></td>
         <td>
-            <a href="#">View</a>
-            <a href="#">Edit</a>
-            <a href="#">Abandon</a>
+            <a href="/anime/{{ anime.id }}">View</a>
+            <a href="/anime/{{ anime.id }}/edit">Edit</a>
         </td>
     </tr>
     {% endfor %}

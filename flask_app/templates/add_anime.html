@@ -19,24 +19,24 @@ New Anime
 {% endwith %}
 <form action="/add_anime" class="F" method="POST">  <!--col-6 mx-auto-->
 <input type="hidden" name="user_id" value="{{session['user_id']}}">
+<input type="hidden" name="statusDone" value="inProgress">
 <div class="form-group text-center">
     <label for="title">Title:</label><br><br>
     <input class="" type="text" name="title"><br>
     <label for="coverImg">Cover Art URL:</label><br><br>
     <input class="" type="text" name="coverImg"><br>
-    <label for="date_started">Date Started:</label><br><br>
-    <input class="" type="date" name="date_started"><br>
-    <label for="current_season">Current Season:</label><br><br>
-    <input class="" type="number" name="current_season"><br>
-    <label for="current_episode">Current Episode:</label><br><br>
-    <input class="" type="number" name="current_episode"><br>
+    <label for="startedAt">Date Started:</label><br><br>
+    <input class="" type="date" name="startedAt"><br>
+    <label for="seasons">Current Season:</label><br><br>
+    <input class="" type="number" name="seasons"><br>
+    <label for="episodeNum">Current Episode:</label><br><br>
+    <input class="" type="number" name="episodeNum"><br>
     <label for="genre">Genre:</label><br><br>
-    <select class="">
+    <select name="genre">
         {% for genre in genres %}
-        <option value="{{ genre.title }}">{{ genre.title }}</option>
+        <option value="{{ genre }}">{{ genre }}</option>
         {% endfor %}
     </select><br><br>
-    <input type="checkbox" value="completed"><label for="statusDone">Completed?</label><br><br>
 </div>
 <button class="addB">Add New Anime</button>
 </form>

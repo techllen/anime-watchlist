@@ -4,17 +4,31 @@ Library
 {% endblock %}
 
 {% block content %}
-<p>{{ user.username }}</p>
 <div>
-<h1>Currently Watching</h1>
+<h1>Currently Watching</h1><br>
 {% for anime in animes %}
     {% if session['user_id'] == anime.user_id %}
+    {% if anime.statusDone == "inProgress" %}
     <a href="/anime/{{ anime.id }}"><img style="width:250px" src="{{ anime.coverImg }}" alt="Cover Image"></a>
     <h5>{{anime.title}}</h5>
-    <p>{{anime.startedAt}}</p>
-    <p>{{anime.seasons}}</p>
-    <p>{{anime.episodeNum}}</p>
-    <p><a href="#">{{anime.genre}}</a></p>
+    <p>Started on: {{anime.startedAt}}</p>
+    <p>Current Season: {{anime.seasons}}</p>
+    <p>Current Episode: {{anime.episodeNum}}</p>
+    <p><a href="/{{anime.genre}}">{{anime.genre}}</a></p><br><br>
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+</div>
+<div>
+<h1>Completed</h1><br>
+{% for anime in animes %}
+    {% if session['user_id'] == anime.user_id %}
+    {% if anime.statusDone == "completed" %}
+    <a href="/anime/{{ anime.id }}"><img style="width:250px" src="{{ anime.coverImg }}" alt="Cover Image"></a>
+    <h5>{{anime.title}}</h5>
+    <p>Started on: {{anime.startedAt}}</p>
+    <p><a href="/{{anime.genre}}">{{anime.genre}}</a></p><br><br>
+    {% endif %}
     {% endif %}
     {% endfor %}
 </div>
@@ -29,5 +43,4 @@ Library
     {% endif %}
     {% endfor %}
 </div>
-{% endblock %}
 {% endblock %}
