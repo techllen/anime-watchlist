@@ -1,10 +1,11 @@
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/reg.css') }}">
 {% extends 'base.html' %}
 {% block title %}
 Register
 {% endblock %}
 
 {% block content %}
-<form action="register" class="col-6 mx-auto form-group text-center" method="POST">
+<form action="register" class="F" method="POST">
     <section>
         <label for="username">Username:</label><br><br>
         <input class="form-control" type="text" name="username">
@@ -21,6 +22,6 @@ Register
         <label for="confirm_password">Confirm Password:</label><br><br>
         <input class="form-control" type="password" name="confirm_password">
     </section><br><br>
-    <button class="btn btn-warning form-control my-2">Register</button>
+    <button class="regB">Register</button>
 </form>
 {% endblock %}

@@ -1,0 +1,32 @@
+.container2 {
+    margin: 0 auto;
+    align-content: center;
+}
+
+.F{
+    border: 3px black;
+    height: auto;
+    /* width: 500px; */
+    /* display: inline-block; */
+    padding: 20px;
+    margin: 20px auto;
+    /* flex: 1; */
+    text-align: center;
+    /* justify-content: space-around; */
+}
+
+input {
+    margin-bottom: 25px;
+}
+
+.regB {
+    border: solid 2px rgb(182 145 145);
+    border-radius: 15px;
+    color: rgb(0, 0, 0);
+    width: auto;
+    height: auto;
+    background-color: rgb(139 139 158);
+    font-weight: 200;
+    padding-left: 5px;
+    padding-right: 5px;
+}
