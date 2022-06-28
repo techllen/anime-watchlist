@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Baloo+Paaji+2:wght@400;500&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
 *{
     padding: 0;
@@ -20,7 +20,7 @@
     align-content: flex-end;
     /* width: 100%; */
     background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
-    font-family: 'Baloo Paaji 2', cursive;
+    font-family: 'VT323', monospace;
 }
 
 .navIcon {
@@ -38,18 +38,17 @@
     box-shadow: 1px rgb(3, 3, 3);
     border-radius: 15px;
     color: rgb(255, 0, 0);
-    width: 51px;
     font-style: italic;
     font-weight: 200;
     padding-left: 5px;
 }
 
 .liB {
-    border: solid 2px rgb(255, 255, 255);
+    /* border: solid 2px black; */
     display: table;
     box-shadow: 1px rgb(3, 3, 3);
-    border-radius: 15px;
-    color: rgb(255, 255, 255);
+    /* border-radius: 15px; */
+    color: black;
     width: 51px;
     font-style: italic;
     font-weight: 200;
@@ -58,10 +57,10 @@
 }
 
 a {
-    border: solid 2px rgb(255, 255, 255);
+    /* border: solid 2px rgb(0, 0, 0);
+    border-radius: 15px; */
     display: table;
-    border-radius: 15px;
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     width: auto;
     height: auto;
     font-style: italic;
@@ -88,11 +87,13 @@ a {
     background-image: url("/static/img/CherryBlossomRain.gif");
     background-repeat: no-repeat;
     background-size: 1542px, 155px;
-    height: 797px;
+    z-index: 1;
+    
 }
 
 .container {
     margin: auto;
+    height: 100%;
     /* width: 50%; */
-    padding: 10px;
+    /* padding: 10px; */
 } 

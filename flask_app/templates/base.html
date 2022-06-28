@@ -16,22 +16,23 @@
         }
     </style>
 </head>
-<body class="body"> 
-    {% block nav %}
-    <nav class="navbar">
-        <a href="/dashboard">Home</a>
-        <a class="liB" href="/library">Library</a> 
-        <a class="btn btn-warning btn-sm" href="/anime/new">New Anime</a> 
-        <a class="logB" href="/logout">Logout</a>
-    </nav>
-    {% endblock %}
-    <br>
-    <div class="container">
-    {% block content %}
+<body>
+    <div class="body">
+        {% block nav %}
+        <nav class="navbar">
+            <a href="/dashboard">Home</a>
+            <a class="liB" href="/library">Library</a> 
+            <a class="btn btn-warning btn-sm" href="/anime/new">New Anime</a> 
+            <a class="logB" href="/logout">Logout</a>
+        </nav>
+        {% endblock %}
+        <div class="container">
+        {% block content %}
 
-    {% endblock %}
+        {% endblock %}
+        </div>
+        <br><br><br><br>
     </div>
-    <br><br><br><br>
 </body>
 </html>
 
