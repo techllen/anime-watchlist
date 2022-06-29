@@ -40,6 +40,7 @@
 
 .logB {
     border: solid 2px rgb(255, 0, 0);
+    background-image: linear-gradient(to top, #9795f0 0%, #fbc8d4 100%);
     display: table;
     box-shadow: 1px rgb(3, 3, 3);
     border-radius: 15px;

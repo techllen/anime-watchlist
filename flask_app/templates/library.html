@@ -29,7 +29,7 @@ Library
                 {% for anime in animes %}
                     {% if session['user_id'] == anime.user_id %}
                     {% if anime.statusDone == "completed" %}
-                    <div class="completanime">
+                    <div class="completAnime">
                         <a href="/anime/{{ anime.id }}"><img class="coverimg" src="{{ anime.coverImg }}" alt="Cover Image"></a>
                         <h5>{{anime.title}}</h5>
                         <p>Started on: {{anime.startedAt}}</p>
@@ -40,13 +40,13 @@ Library
                 {% endfor %}
             </div>
             <div class="abandonContainer">
-                <h1>Abandoned</h1>
+                <h1>Abandoned</h1><br>
                 {% for anime in animes %}
                     {% if anime.statusDone == "abandoned" %}
                     {% if session['user_id'] == anime.user_id %}
                     <div class="abandonAnime">
                         <a href="/anime/{{ anime.id }}"><img class="coverimg" src="{{ anime.coverImg }}" alt="Cover Image"></a>
-                        <h5>{{anime.title}}</h5>
+                        <h5>{{anime.title}}</h5><br><br>
                     </div>
                     {% endif %}
                     {% endif %}
