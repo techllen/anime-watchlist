@@ -1,9 +1,10 @@
-
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
 
 .container2 {
     margin: 0 auto;
     align-content: center;
+    font-family: 'VT323', monospace;
 }
 
 .F{
