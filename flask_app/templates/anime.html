@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/anime.css') }}">
 {% extends 'base.html' %}
 {% block title %}
 {{anime.title}}
@@ -5,30 +6,36 @@
 
 {% block content %}
 {% if session['user_id'] == anime.user_id %}
-<div>
-    <h1>{{anime.title}}</h1><br>
-    <a href="/anime/{{ anime.id }}"><img style="width:250px" src="{{ anime.coverImg }}" alt="Cover Image"></a>
-    <p>Started on: {{anime.startedAt}}</p>
-    <p>Current Season: {{anime.seasons}}</p>
-    <p>Current Episode: {{anime.episodeNum}}</p>
-    <a href="/{{anime.genre}}">{{anime.genre}}</a><br>
-    <a href="/anime/{{anime.id}}/edit">Edit</a>
-    {% if anime.statusDone == "inProgress" %}
-    <a href="/anime/{{anime.id}}/abandon">Abandon</a>
-    <a href="/anime/{{anime.id}}/complete">Complete</a>
-    {% endif %}
-    <a href="/anime/{{anime.id}}/delete">Delete</a><br><br>
-</div>
-<div >
-    <h1>Thoughts</h1>
-    <a href="/thought/{{anime.id}}/new">add new thought</a>
-    {% for thought in thoughts %}
-    <p>Season: {{thought.seasonNum}}</p>
-    <p>Episode: {{thought.episodeNum}}</p>
-    <p>{{ thought.thoughts }}</p>
-    <a href="/thought/{{thought.id}}/edit">Edit Thought</a>
-    <a href="/thought/{{thought.id}}/delete">Delete Thought</a>
-    {% endfor %}
+<div class="container2">
+    <div class="content">
+        <div class="anime">
+            <h1>{{anime.title}}</h1><br>
+            <a href="/anime/{{ anime.id }}"><img class="coverimg" src="{{ anime.coverImg }}" alt="Cover Image"></a>
+            <p>Started on: {{anime.startedAt}}</p>
+            <p>Current Season: {{anime.seasons}}</p>
+            <p>Current Episode: {{anime.episodeNum}}</p>
+            <a href="/{{anime.genre}}">{{anime.genre}}</a><br>
+            <a href="/anime/{{anime.id}}/edit">Edit</a>
+            {% if anime.statusDone == "inProgress" %}
+            <a href="/anime/{{anime.id}}/abandon">Abandon</a>
+            <a href="/anime/{{anime.id}}/complete">Complete</a>
+            {% endif %}
+            <a href="/anime/{{anime.id}}/delete">Delete</a><br><br>
+        </div>
+        <div class="thoughts">
+            <h1>Thoughts</h1>
+            <a class="add" href="/thought/{{anime.id}}/new">add new thought</a>
+            {% for thought in thoughts %}
+                <div class="eachthought">
+                    <p>Season: {{thought.seasonNum}}</p>
+                    <p>Episode: {{thought.episodeNum}}</p>
+                    <p>{{ thought.thoughts }}</p>
+                    <a href="/thought/{{thought.id}}/edit">Edit Thought</a>
+                    <a href="/thought/{{thought.id}}/delete">Delete Thought</a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 </div>
 {% endif %}
 {% endblock %}

@@ -11,6 +11,7 @@
 .UN {
     display: flex;
     justify-content: center;
+    padding: 10px;
 }
 
 .content {
@@ -20,8 +21,16 @@
 
 .watchContainer {
     /* overflow-y: scroll; */
-    height: 500px;
-    width: 300px;
+    height: 700px;
+    width: 400px;
+    overflow-y: scroll;
+}
+.watchContainer::-webkit-scrollbar {
+    display: none;
+}
+
+.eachAnime{
+    margin: 15px;
 }
 
 .genContainer {
@@ -45,8 +54,15 @@
     color: rgb(0, 0, 0);
     border: solid 2px rgb(0, 0, 0);
     border-radius: 15px;
+    display: flex;
+    align-items: center;
+    padding: 5px;
     height: 115px;
     width: 400px;
+    overflow-x: scroll;
+}
+.genreLink::-webkit-scrollbar {
+    display: none;
 }
 
 /* .genreLink:nth-child(odd) {
@@ -58,3 +74,8 @@
     background-image: linear-gradient(-20deg, #ddd6f3 0%, #faaca8 100%, #faaca8 100%);
 }
 
+.coverimg {
+    height: 90px;
+    width: 76px;
+    /* padding-top: 10px; */
+}

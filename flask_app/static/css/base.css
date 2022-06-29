@@ -23,6 +23,12 @@
     font-family: 'VT323', monospace;
 }
 
+.flower {
+    background-image: url("/static/img/PngItem_1048766.png");
+    height: 40px;
+    width: 40px;
+}
+
 .navIcon {
     /* background-color: rgb(248, 134, 184); */
     width: 100%;
@@ -92,7 +98,7 @@ a {
 }
 
 .container {
-    margin: auto;
+    /* margin: auto; */
     height: 100%;
     /* width: 50%; */
     /* padding: 10px; */
