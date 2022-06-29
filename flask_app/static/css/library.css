@@ -37,6 +37,7 @@
     color: rgb(0, 0, 0);
     border: solid 2px rgb(0, 0, 0);
     border-radius: 15px;
+    padding: 11px;
     height: auto;
     width: auto;
     /* align-items: center;        need to center on each catigory*/  
@@ -67,6 +68,7 @@
     color: rgb(0, 0, 0);
     border: solid 2px rgb(0, 0, 0);
     border-radius: 15px;
+    padding: 11px;
     height: auto;
     width: auto;
 }
@@ -99,6 +101,7 @@
     color: rgb(0, 0, 0);
     border: solid 2px rgb(0, 0, 0);
     border-radius: 15px;
+    padding: 11px;
     height: auto;
     width: auto;
 }
