@@ -1,46 +1,58 @@
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/library.css') }}">
 {% extends 'base.html' %}
 {% block title %}
 Library
 {% endblock %}
 
 {% block content %}
-<div>
-<h1>Currently Watching</h1><br>
-{% for anime in animes %}
-    {% if session['user_id'] == anime.user_id %}
-    {% if anime.statusDone == "inProgress" %}
-    <a href="/anime/{{ anime.id }}"><img style="width:250px" src="{{ anime.coverImg }}" alt="Cover Image"></a>
-    <h5>{{anime.title}}</h5>
-    <p>Started on: {{anime.startedAt}}</p>
-    <p>Current Season: {{anime.seasons}}</p>
-    <p>Current Episode: {{anime.episodeNum}}</p>
-    <p><a href="/{{anime.genre}}">{{anime.genre}}</a></p><br><br>
-    {% endif %}
-    {% endif %}
-    {% endfor %}
-</div>
-<div>
-<h1>Completed</h1><br>
-{% for anime in animes %}
-    {% if session['user_id'] == anime.user_id %}
-    {% if anime.statusDone == "completed" %}
-    <a href="/anime/{{ anime.id }}"><img style="width:250px" src="{{ anime.coverImg }}" alt="Cover Image"></a>
-    <h5>{{anime.title}}</h5>
-    <p>Started on: {{anime.startedAt}}</p>
-    <p><a href="/{{anime.genre}}">{{anime.genre}}</a></p><br><br>
-    {% endif %}
-    {% endif %}
-    {% endfor %}
-</div>
-<div>
-<h1>Abandoned</h1>
-{% for anime in animes %}
-    {% if anime.statusDone == "abandoned" %}
-    {% if session['user_id'] == anime.user_id %}
-    <a href="/anime/{{ anime.id }}"><img style="width:250px" src="{{ anime.coverImg }}" alt="Cover Image"></a>
-    <h5>{{anime.title}}</h5>
-    {% endif %}
-    {% endif %}
-    {% endfor %}
+<div class="container2">
+    <div class="content">
+        <div class="watchContainer">
+            <h1>Currently Watching</h1><br>
+            {% for anime in animes %}
+                {% if session['user_id'] == anime.user_id %}
+                {% if anime.statusDone == "inProgress" %}
+                <div class="watchAnime">
+                    <a href="/anime/{{ anime.id }}"><img class="coverimg" src="{{ anime.coverImg }}" alt="Cover Image"></a>
+                    <h5>{{anime.title}}</h5>
+                    <p>Started on: {{anime.startedAt}}</p>
+                    <p>Current Season: {{anime.seasons}}</p>
+                    <p>Current Episode: {{anime.episodeNum}}</p>
+                    <p><a href="/{{anime.genre}}">{{anime.genre}}</a></p><br><br>
+                </div>
+                {% endif %}
+                {% endif %}
+            {% endfor %}
+            </div>
+            <div class="completedContainer">
+                <h1>Completed</h1><br>
+                {% for anime in animes %}
+                    {% if session['user_id'] == anime.user_id %}
+                    {% if anime.statusDone == "completed" %}
+                    <div class="completAnime">
+                        <a href="/anime/{{ anime.id }}"><img class="coverimg" src="{{ anime.coverImg }}" alt="Cover Image"></a>
+                        <h5>{{anime.title}}</h5>
+                        <p>Started on: {{anime.startedAt}}</p>
+                        <p><a href="/{{anime.genre}}">{{anime.genre}}</a></p><br><br>
+                    </div>
+                    {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="abandonContainer">
+                <h1>Abandoned</h1><br>
+                {% for anime in animes %}
+                    {% if anime.statusDone == "abandoned" %}
+                    {% if session['user_id'] == anime.user_id %}
+                    <div class="abandonAnime">
+                        <a href="/anime/{{ anime.id }}"><img class="coverimg" src="{{ anime.coverImg }}" alt="Cover Image"></a>
+                        <h5>{{anime.title}}</h5><br><br>
+                    </div>
+                    {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

@@ -1,32 +1,12 @@
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/loginAndReg.css') }}">
 {% extends 'base.html' %}
 {% block title %}
 Login
 {% endblock %}
 
 {% block content %}
-<form action="/login" class="col-6 mx-auto form-group text-center" method="POST">
-    <section>
-        <label for="email">Email:</label><br><br>
-        <input class="form-control" type="email" name="email">
-    </section><br>
-    <section>
-        <label for="password">Password:</label><br><br>
-        <input class="form-control" type="password" name="password">
-    </section><br><br>
-    <button class="btn btn-warning my-2 form-control">Login</button>
-</form><br><br>
-{% with messages = get_flashed_messages() %}
-    {% if messages %}
-        {% for message in messages %}
-            <p class="text-center">{{message}}</p>
-        {% endfor %}<br><br>
-    {% endif %}
-{% endwith %}
-    <form action="/register" class="col-6 mx-auto form-group text-center" method="POST">
-        <section>
-            <label for="username">Username:</label><br><br>
-            <input class="form-control" type="text" name="username">
-        </section><br>
+<div class="card1">
+    <form action="/login" class="F" method="POST">
         <section>
             <label for="email">Email:</label><br><br>
             <input class="form-control" type="email" name="email">
@@ -34,11 +14,36 @@ Login
         <section>
             <label for="password">Password:</label><br><br>
             <input class="form-control" type="password" name="password">
-        </section><br>
-        <section>
-            <label for="confirm_password">Confirm Password:</label><br><br>
-            <input class="form-control" type="password" name="confirm_password">
         </section><br><br>
-        <button class="btn btn-warning form-control my-2">Register</button>
-    </form>
+        <button class="loginB">Login</button>
+    </form><br><br>
+</div>
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <p class="text-center">{{message}}</p>
+        {% endfor %}<br><br>
+    {% endif %}
+{% endwith %}
+    <div class="card2">
+        <form action="/register" class="F" method="POST">
+            <section>
+                <label for="username">Username:</label><br><br>
+                <input class="form-control" type="text" name="username">
+            </section><br>
+            <section>
+                <label for="email">Email:</label><br><br>
+                <input class="form-control" type="email" name="email">
+            </section><br>
+            <section>
+                <label for="password">Password:</label><br><br>
+                <input class="form-control" type="password" name="password">
+            </section><br>
+            <section>
+                <label for="confirm_password">Confirm Password:</label><br><br>
+                <input class="form-control" type="password" name="confirm_password">
+            </section><br><br>
+            <button class="regB">Register</button>
+        </form>
+    </div>
 {% endblock %}

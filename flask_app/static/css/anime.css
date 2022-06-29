@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+
+.Container2 {
+    background-image: url("/static/img/solarSinkCity.jpg");
+    background-size: 1530px, 155px;
+    height: 897px;
+    font-family: 'VT323', monospace;
+    z-index: 2;
+}
+
+.content {
+    padding-top: 100px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.coverimg {
+    /* height: 400px; */
+    width: 250px;
+}
+
+h1 {
+    color: rgb(205 125 121);
+}
+p {
+    color: #485f6a;
+}
+
+
+.anime {
+    align-items: center;
+    color: rgb(0, 0, 0);
+    border: solid 2px rgb(0, 0, 0);
+    border-radius: 15px;
+    /* opacity: 0.5; */
+    background-image: linear-gradient(180deg, #a5bf5f 0%, #3d8988 100%);
+    justify-content: center;
+    align-items: center;
+    height: 450px;
+    padding: 5px;
+}
+
+.thoughts {
+    /* align-content: center; */
+    overflow-y: scroll;
+    height: 763px;
+    width: 450px;
+    justify-content: center;
+    align-items: center;
+}
+.thoughts::-webkit-scrollbar {
+    display: none;
+}
+
+.add {
+    margin: 20px;
+    padding: 5px;
+    color: rgb(0, 0, 0);
+    border: solid 2px rgb(0, 0, 0);
+    border-radius: 15px;
+    background-image: linear-gradient(60deg, #a5bf5f 0%, #3d8988 100%);
+}
+
+.eachthought {
+    color: rgb(0, 0, 0);
+    border: solid 2px rgb(0, 0, 0);
+    border-radius: 15px;
+    background-image: linear-gradient(180deg, #a5bf5f 0%, #3d8988 100%);
+    margin: 60px;
+    padding: 10px;
+    height: auto;
+    width: auto;
+}

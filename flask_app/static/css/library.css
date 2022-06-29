@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+.Container2 {
+    background-image: url("/static/img/lakecity.jpg");
+    background-size: 1542px, 155px;
+    height: 797px;
+    font-family: 'VT323', monospace;
+    z-index: 2;
+}
+.content {
+    display: flex;
+    justify-content: space-around;
+}
+.coverimg {
+    width: 200px;
+}
+
+.watchContainer {
+    overflow-y: scroll;
+    display: grid;
+    height: 763px;
+    width: 450px;
+    /* grid-template-columns:70px 70px 70px 70px; */
+    grid-gap: 50px;
+    justify-content: center;
+    align-items: center;
+}
+.watchContainer::-webkit-scrollbar {
+    display: none;
+}
+.watchContainer>h1 {
+    color: #f5afa9;
+}
+
+.watchAnime {
+    background-image: linear-gradient(to top, #fdcbf1 0%, #fdcbf1 1%, #e6dee9 100%);
+    color: rgb(0, 0, 0);
+    border: solid 2px rgb(0, 0, 0);
+    border-radius: 15px;
+    height: auto;
+    width: auto;
+    /* align-items: center;        need to center on each catigory*/  
+}
+.watchAnime:hover {
+    background-image: linear-gradient(-20deg, #ddd6f3 0%, #faaca8 100%, #faaca8 100%);
+}
+
+.completedContainer {
+    overflow-y: scroll;
+    display: grid;
+    height: 763px;
+    width: 450px;
+    /* grid-template-columns:70px 70px 70px 70px; */
+    grid-gap: 50px;
+    justify-content: center;
+    align-items: center;
+}
+.completedContainer::-webkit-scrollbar {
+    display: none;
+}
+.completedContainer>h1 {
+    color: #a2b7ff;
+}
+
+.completAnime {
+    background-image: linear-gradient(-20deg, #ddd6f3 0%, #e67daf 100%, #faaca8 100%);
+    color: rgb(0, 0, 0);
+    border: solid 2px rgb(0, 0, 0);
+    border-radius: 15px;
+    height: auto;
+    width: auto;
+}
+.completAnime:hover {
+    background-image: linear-gradient(-20deg, #b692df 0%, #e76088 100%, #8671c9 100%);
+    /* background-image: linear-gradient(120deg, #fccb90 0%, #d57eeb 100%); */
+    /* background-image: linear-gradient(-20deg, #ddd6f3 0%, #faaca8 100%, #faaca8 100%); */
+}
+
+.abandonContainer {
+    overflow-y: scroll;
+    display: grid;
+    height: 763px;
+    width: 450px;
+    /* grid-template-columns:70px 70px 70px 70px; */
+    grid-gap: 50px;
+    justify-content: center;
+    align-items: center;
+}
+.abandonContainer>h1 {
+    color: #715cc3;
+}
+
+.abandonContainer::-webkit-scrollbar {
+    display: none;
+}
+
+.abandonAnime {
+    background-image: linear-gradient(to top, #fbc2eb 0%, #765ea8 100%);
+    color: rgb(0, 0, 0);
+    border: solid 2px rgb(0, 0, 0);
+    border-radius: 15px;
+    height: auto;
+    width: auto;
+}
+.abandonAnime:hover {
+    background-image: linear-gradient(to top, #4c1245 0%, #8472c9 100%);
+}
+
+/* .genreLink:nth-child(odd) {
+    background-image: linear-gradient(to top, #fdcbf1 0%, #fdcbf1 1%, #e6dee9 100%);
+    color: white;
+} */
+

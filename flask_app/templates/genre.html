@@ -1,21 +1,25 @@
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/genre.css') }}">
 {% extends 'base.html' %}
 {% block title %}
 {{ genre }}
 {% endblock %}
 
 {% block content %}
-<h1>{{ genre }}</h1>
-<table>
-    {% for anime in animes %}
-    <tr>
-        <td><h3>{{anime.title}}</h3><br>
-            <a href="/anime/{{ anime.id }}">
-            <img style="width: 250px;" src="{{anime.coverImg}}" alt="Cover art"></a></td>
-        <td>
-            <a href="/anime/{{ anime.id }}">View</a>
-            <a href="/anime/{{ anime.id }}/edit">Edit</a>
-        </td>
-    </tr>
-    {% endfor %}
-</table>
+<div class="Container2">
+    <div class="content">
+        <h1>{{ genre }}</h1>
+        <table>
+            {% for anime in animes %}
+            <tr>
+                <td><h3>{{anime.title}}</h3><br>
+                    <a href="/anime/{{ anime.id }}">
+                    <img class="coverimg" src="{{anime.coverImg}}" alt="Cover art"></a>
+                    <a href="/anime/{{ anime.id }}">View</a>
+                    <a href="/anime/{{ anime.id }}/edit">Edit</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
 {% endblock %}

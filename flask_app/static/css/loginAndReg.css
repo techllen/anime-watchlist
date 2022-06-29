@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Paaji+2:wght@400;500&display=swap");
+
+
+.container {
+    /* transform: translate(-50%, -50%);
+    backdrop-filter: blur(3px);
+    background-color: rgb(139 139 158);
+    opacity: 3%;
+    border: 3px black; */
+    display: grid;
+    grid-template-columns: 300px 300px;
+    grid-gap: 50px;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'VT323', monospace;
+}
+
+.card1 {
+    background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
+    margin: 40px;
+    height: auto;
+    width: 225px;
+    border-radius: 5px;
+    display: flex;
+    display: inline-block;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.7);
+    color: white;
+}
+
+input {
+    margin-bottom: 25px;
+}
+
+.loginB {
+    border: solid 2px rgb(255, 255, 255);
+    border-radius: 15px;
+    color: rgb(0, 0, 0);
+    width: auto;
+    height: auto;
+    background-image: linear-gradient(to top, #9795f0 0%, #fbc8d4 100%);
+    font-weight: 200;
+    padding-left: 5px;
+    padding-right: 5px;
+    animation: flicker 2.3s infinite alternate;
+}
+
+.F{
+    border: 3px black;
+    height: auto;
+    /* width: 500px; */
+    /* display: inline-block; */
+    padding: 20px;
+    margin: 20px auto;
+    /* flex: 1; */
+    text-align: center;
+    /* justify-content: space-around; */
+}
+
+input {
+    margin-bottom: 25px;
+}
+
+.card2 {
+    background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
+    margin: 40px;
+    height: auto;
+    width: 225px;
+    border-radius: 5px;
+    display: flex;
+    display: inline-block;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.7);
+    color: white;
+}
+
+.regB {
+    border: solid 2px rgb(255, 255, 255);
+    border-radius: 15px;
+    color: rgb(0, 0, 0);
+    width: auto;
+    height: auto;
+    background-image: linear-gradient(to top, #9795f0 0%, #fbc8d4 100%);
+    font-weight: 200;
+    padding-left: 5px;
+    padding-right: 5px;
+}
