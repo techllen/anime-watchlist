@@ -1,3 +1,44 @@
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
-font-family: 'VT323', monospace;
+.Container2 {
+    background-image: url("/static/img/blurysigns.png");
+    background-size: 1542px, 155px;
+    height: 797px;
+    font-family: 'VT323', monospace;
+    z-index: 2;
+}
+
+.content {
+    display: flex;
+    justify-content: space-around;
+    display: block;
+}
+
+h1 {
+    padding: 30px;
+}
+
+tbody {
+    height: 685px;
+    width: 1515px;
+    /* flex-flow: inherit;
+    flex-direction: row;
+    align-items: inherit; */
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    overflow-x: scroll;
+}
+tbody::-webkit-scrollbar {
+    display: none;
+}
+
+tr {
+    display: inline-block;
+    padding: 15px;
+}
+
+.coverimg {
+    width: 250px;
+
+}

@@ -9,20 +9,22 @@ Dashboard
     <p class="UN">{{ user.username }}</p>
     <div class="content">
         <div class="watchContainer">
-        <h1>Currently Watching</h1>
-        {% for anime in animes %}
-            {% if anime.statusDone == "inProgress" %}
-            {% if session['user_id'] == anime.user_id %}
-            <a href="/anime/{{ anime.id }}"><img style="width:250px" src="{{ anime.coverImg }}" alt="Cover Image"></a>
-            <h5>{{anime.title}}</h5>
-            <p>Started on: {{anime.startedAt}}</p>
-            <p>Current Season: {{anime.seasons}}</p>
-            <p>Current Episode: {{anime.episodeNum}}</p>
-            <p><a href="/{{anime.genre}}">{{anime.genre}}</a></p><br>
-            <a href="/anime/{{anime.id}}/abandon">Abandon</a><br>
-            <a href="/anime/{{anime.id}}/complete">Complete</a><br><br>
-            {% endif %}
-            {% endif %}
+            <h1>Currently Watching</h1>
+            {% for anime in animes %}
+                {% if anime.statusDone == "inProgress" %}
+                {% if session['user_id'] == anime.user_id %}
+                <div class="eachAnime">
+                    <a href="/anime/{{ anime.id }}"><img class="coverimg" src="{{ anime.coverImg }}" alt="Cover Image"></a>
+                    <h5>{{anime.title}}</h5>
+                    <p>Started on: {{anime.startedAt}}</p>
+                    <p>Current Season: {{anime.seasons}}</p>
+                    <p>Current Episode: {{anime.episodeNum}}</p>
+                    <p><a href="/{{anime.genre}}">{{anime.genre}}</a></p><br>
+                    <a href="/anime/{{anime.id}}/abandon">Abandon</a><br>
+                    <a href="/anime/{{anime.id}}/complete">Complete</a><br><br>
+                </div>
+                {% endif %}
+                {% endif %}
             {% endfor %}
         </div>
         <div class="genContainer">
@@ -34,7 +36,7 @@ Dashboard
                 {% for anime in animes %}
                     {% if session['user_id'] == anime.user_id %}
                         {% if anime.genre == genre %}
-                            <a href="/anime/{{ anime.id }}"><img style="height:30px" src="{{ anime.coverImg }}" alt="Cover Image"></a>
+                            <a href="/anime/{{ anime.id }}"><img class="coverimg" src="{{ anime.coverImg }}" alt="Cover Image"></a>
                         {% endif %}
                     {% endif %}
                 {% endfor %}
