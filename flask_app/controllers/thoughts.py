@@ -43,7 +43,7 @@ def add_thought(id):
             }
             # save the thought data
             Thought.save(thought_data)
-            return redirect("/dashboard")
+            return redirect(f"/anime/{id}")
         
 
 # this route redirect users to the edit thought page(edit_thought.html)

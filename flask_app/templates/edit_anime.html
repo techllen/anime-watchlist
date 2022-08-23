@@ -19,18 +19,8 @@ Edit {{anime.title}}
             <input class="" type="number" name="seasons" value="{{anime.seasons}}"><br>
             <label for="episodeNum">Current Episode:</label><br><br>
             <input class="" type="number" name="episodeNum" value="{{anime.episodeNum}}"><br>
-            <label for="genre">Genre:</label><br><br>
-            <select name="genre" value="{{anime.genre}}">
-                {% for genre in genres %}
-                <option value="{{ genre }}">{{ genre }}</option>
-                {% endfor %}
-            </select><br><br>
-            <select name="statusDone">
-                <option value="inProgress">Watching</option>
-                <option value="completed">Completed</option>
-                <option value="abandoned">Abandon</option>
-            </select>
-        </div>
+            <input type="hidden" name="genre" value="{{anime.genre}}">
+            <input type="hidden" name="statusDone" value="{{anime.statusDone}}">
         <button class="editB">Edit Anime</button>
     </form>
 </div>

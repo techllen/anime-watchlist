@@ -21,8 +21,13 @@ def dashboard_page():
         user_data = {
             'id': session['user_id']
         }
+        anime_data = {
+            'user_id': session['user_id']
+        }
+        print(user_data)
+        print(anime_data)
         user = User.getOne(user_data)
-        anime = Anime.getAllAnimes()
+        anime = Anime.getByUser(anime_data)
         genres = ["Action","Adventure","Comedy","Drama","Fantasy","Isekai","Music","Romance","Scifi","Seinen","Shojo","Shonen","Slice Of Life","Sports","Supernatural","Thriller"]
         return render_template("dashboard.html", user=user, animes=anime, genres=genres)
     else: 

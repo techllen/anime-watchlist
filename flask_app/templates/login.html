@@ -16,15 +16,24 @@ Login
             <input class="form-control" type="password" name="password">
         </section><br><br>
         <button class="loginB">Login</button>
-    </form><br><br>
+    </form>
+    <form action="/login" class="F" method="POST">
+        <section>
+            <input class="form-control" type="hidden" name="email" value="test@test.com">
+        </section>
+        <section>
+            <input class="form-control" type="hidden" name="password" value="Testing1$">
+        </section>
+        <button class="loginB">Test Login</button>
+    </form>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p style="text-align: center;">{{message}}</p>
+            {% endfor %}<br><br>
+        {% endif %}
+    {% endwith %}
 </div>
-{% with messages = get_flashed_messages() %}
-    {% if messages %}
-        {% for message in messages %}
-            <p class="text-center">{{message}}</p>
-        {% endfor %}<br><br>
-    {% endif %}
-{% endwith %}
     <div class="card2">
         <form action="/register" class="F" method="POST">
             <section>
